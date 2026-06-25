@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0003 - 跑完 Codex App 的第一次任务闭环</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0003</div>
+      <h1>跑完 Codex App 的第一次任务闭环</h1>
+      <p class="lede">这一课只练一个能力：你能不能把 Codex App 第一次上手讲成一条完整、可检查、低风险的任务流程。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=21">`Codex橙皮书.pdf` 第 21-30 页</a>。第 19-20 页的安装步骤会随版本变化，本课先不背安装按钮位置，而是掌握第一次打开后的核心工作流。
+    </p>
+
+    <section>
+      <h2>第一次不要做大项目</h2>
+      <p>新手第一次用 Codex App，目标不是立刻做一个完整产品，而是跑通一条小闭环：让 Codex 进入一个安全练习项目，完成一个边界很小的任务，然后你能看懂它改了什么。</p>
+      <div class="callout">
+        <p class="formula">选练习项目，开清楚 thread，给小任务，看 diff 后再决定是否接受。</p>
+      </div>
+      <p>这句话能防止新手一上来就把重要项目、复杂需求、不可验收的任务全部塞给 Codex。</p>
+    </section>
+
+    <section>
+      <h2>六个概念要讲清</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>概念</th>
+              <th>解释</th>
+              <th>新手最该记住</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>项目目录</td>
+              <td>Codex 要进入哪个文件夹工作。</td>
+              <td>第一次选干净练习目录，不要选重要项目或整个磁盘。</td>
+            </tr>
+            <tr>
+              <td>项目列表</td>
+              <td>你交给 Codex 的不同代码文件夹或仓库。</td>
+              <td>它不是聊天记录列表，而是代码项目列表。</td>
+            </tr>
+            <tr>
+              <td>thread</td>
+              <td>同一个项目里的一个任务对话。</td>
+              <td>一个明确任务开一个 thread，不要把所有事塞进一个对话。</td>
+            </tr>
+            <tr>
+              <td>任务窗口</td>
+              <td>你给任务、看计划、看执行过程、继续追问的地方。</td>
+              <td>任务越清楚，Codex 越容易做好。</td>
+            </tr>
+            <tr>
+              <td>review pane</td>
+              <td>检查 Codex 实际改动的地方。</td>
+              <td>不要只看文字总结，要看文件和改动。</td>
+            </tr>
+            <tr>
+              <td>diff</td>
+              <td>代码新增和删除的对比。</td>
+              <td>先看 diff，再决定是否接受或继续修改。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>第一次推荐流程</h2>
+      <div class="route" aria-label="第一次使用 Codex App 的推荐流程">
+        <span class="step">登录</span>
+        <span class="step">选练习项目</span>
+        <span class="step">开 thread</span>
+        <span class="step">输入小任务</span>
+        <span class="step">看计划</span>
+        <span class="step">看执行</span>
+        <span class="step">打开 review pane</span>
+        <span class="step">检查 diff</span>
+      </div>
+      <p>你给别人演示时，不要把重点放在“按钮在哪里”，而要让对方看到 Codex 的工作节奏：理解任务、行动、展示改动、等待你验收。</p>
+    </section>
+
+    <section>
+      <h2>第一个任务要小</h2>
+      <p>教材推荐的第一个任务很小，但很聪明：只做一个简单 HTML/CSS 页面。它能让新手看到文件被创建或修改、页面效果变化、diff 出现，同时风险很低。</p>
+      <div class="callout">
+        <p>示例任务：请帮我做一个简单网页，黑色背景，中间显示大字 Hello, Codex，字体白色，页面整体水平和垂直居中，只使用 HTML 和 CSS。</p>
+      </div>
+      <p>这个任务的价值不在页面本身，而在让用户学会“交代任务 -> 查看过程 -> 检查改动 -> 决定下一步”。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习</h2>
+      <p>Codex App 第一次完成任务后，新手最应该先看什么，而不是只相信文字总结？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="页面效果要看，但它不能告诉你文件里具体改了什么。">最终页面</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。diff 能让你看到新增、删除和是否越界修改。">代码 diff</label>
+        <label><input type="radio" value="c" data-bad="任务标题不够。它只说明你想做什么，不说明 Codex 改了什么。">任务标题</label>
+        <label><input type="radio" value="d" data-bad="项目名称能定位工作区，但不能验收本次修改。">项目名称</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 4-6 句话回答：如果你给一个新手演示 Codex App 的第一次任务，你会怎么安排，为什么不能一上来就做大项目？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0003-first-codex-app-task">
+        <h3>写给新手听的版本</h3>
+        <p>要包含三个点：先选安全练习项目；一个明确任务开一个 thread；任务完成后检查 review pane 和 diff。</p>
+        <textarea aria-label="解释 Codex App 第一次任务怎么安排" placeholder="例如：第一次不要直接打开重要项目，我会先让新手..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：第一次演示 Codex App，我会先准备一个干净的练习项目，而不是直接打开重要工作项目。然后为一个明确的小任务新建 thread，例如只用 HTML 和 CSS 做一个 Hello, Codex 页面，让新手看到 Codex 如何理解任务、制定计划、修改文件和总结结果。任务完成后，我不会只看 Codex 的文字总结，而是打开 review pane 检查 diff，确认新增和删除是否符合预期。这样做的目的，是先建立完整闭环和验收习惯，再逐步进入真实项目。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会帮你改成适合对外讲的版本。下一课会继续 Codex App 基础使用：三栏布局、新对话、项目与非项目对话、搜索、thread 管理。</p>
+    </section>
+
+    <footer>
+      Primary source: `Codex橙皮书.pdf`, pages 21-30. Quick reference: <a href="../reference/0003-codex-app-first-run.html">Codex App 第一次任务速查卡</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>
