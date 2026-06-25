@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0004 - 管好 Codex App 的任务空间</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0004</div>
+      <h1>管好 Codex App 的任务空间</h1>
+      <p class="lede">这一课只练一个能力：你能不能给新手讲清楚 Codex App 里项目、thread、搜索、等待批准和归档各自解决什么问题。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=31">`Codex橙皮书.pdf` 第 31-41 页</a>。这节课只讲任务空间管理；设置、权限、沙盒、模型和计划模式放到下一课。
+    </p>
+
+    <section>
+      <h2>App 不是一个大聊天框</h2>
+      <p>很多新手会把 Codex App 当成“带文件能力的 ChatGPT”。但真正开始做项目后，更重要的是理解它的任务空间：项目决定 Codex 能看哪里，thread 决定当前任务边界，归档和搜索负责让任务列表不失控。</p>
+      <div class="callout">
+        <p class="formula">项目决定 Codex 能看哪里，thread 决定这次只做什么，归档让任务列表保持干净。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>先讲三栏布局</h2>
+      <p>给别人演示 Codex App 时，可以先用三栏建立空间感：</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>区域</th>
+              <th>它负责什么</th>
+              <th>新手怎么理解</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>左侧</td>
+              <td>项目列表、thread 列表、搜索和入口导航。</td>
+              <td>这里负责“我在哪个项目、哪个任务里”。</td>
+            </tr>
+            <tr>
+              <td>中间</td>
+              <td>对话和任务窗口。</td>
+              <td>这里负责“我要 Codex 做什么、它准备怎么做”。</td>
+            </tr>
+            <tr>
+              <td>右侧</td>
+              <td>多功能区域，例如文件、diff、浏览器和注释。</td>
+              <td>这里负责“我怎么检查和辅助它完成任务”。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>项目对话和非项目对话</h2>
+      <p>新建对话时，一个关键判断是：这次是否需要 Codex 进入某个代码项目。</p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>使用项目</h3>
+          <p>适合读项目、改代码、修 bug、生成 README、检查 diff。因为 Codex 需要看到项目文件，才能做工程任务。</p>
+        </div>
+        <div class="panel">
+          <h3>不使用项目</h3>
+          <p>适合问概念、讨论方案、准备讲稿、比较工具。它更像普通问答，不应该期待它直接修改本地文件。</p>
+        </div>
+      </div>
+      <p>所以你可以这样教：只要任务会落到文件里，就选项目；只是想清楚问题，可以不使用项目。</p>
+    </section>
+
+    <section>
+      <h2>thread 是任务边界</h2>
+      <p>一个项目里可以有多个 thread，每个 thread 专门处理一个具体任务。教材里举的例子很好：做首页、修按钮、优化移动端、写 README，最好是不同 thread。</p>
+      <div class="callout">
+        <p>一个明确任务 = 一个 thread。不要把“做页面、修 bug、改样式、写文档”全塞进一个对话。</p>
+      </div>
+      <p>这样做有两个好处：Codex 不容易上下文混乱，你也更容易回看每个任务到底改了什么。</p>
+    </section>
+
+    <section>
+      <h2>搜索、等待批准和归档</h2>
+      <ul class="compact-list">
+        <li><strong>搜索</strong>：thread 多了以后，用关键词找回历史任务，不要靠记忆翻列表。</li>
+        <li><strong>等待批准</strong>：Codex 需要权限时会停下来。先看清它要做什么，再点击允许。</li>
+        <li><strong>归档</strong>：完成或暂时不用的 thread 收起来。归档不是删除代码，也不是合并代码，只是整理任务列表。</li>
+      </ul>
+      <p>这三个功能都不是“高级功能”，而是保持任务空间清晰的基本卫生习惯。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习</h2>
+      <p>如果你在同一个项目里已经完成了“做首页”，现在发现按钮点击没有反应，最好的做法是什么？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="容易混乱。旧 thread 的上下文主要是做首页，不适合继续塞修 bug。">塞回旧 thread</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。一个明确任务开一个 thread，修按钮是新的任务边界。">新开 thread</label>
+        <label><input type="radio" value="c" data-bad="归档能整理列表，但不能替代修复新问题。">直接归档</label>
+        <label><input type="radio" value="d" data-bad="不使用项目适合问概念，修按钮需要进入项目文件。">不用项目</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 4-6 句话回答：你会怎么向新手解释 Codex App 里的项目和 thread？为什么一个任务最好开一个 thread？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0004-codex-app-task-space">
+        <h3>写给新手听的版本</h3>
+        <p>要包含三个点：项目决定工作范围；thread 是任务对话；搜索、等待批准、归档帮助管理任务。</p>
+        <textarea aria-label="解释 Codex App 的项目和 thread" placeholder="例如：项目可以理解成 Codex 要进入的代码文件夹，thread 可以理解成..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：项目可以理解成 Codex 要进入的代码文件夹或仓库，它决定 Codex 能看到哪些文件、在哪个范围里工作。thread 是这个项目里的一个具体任务对话，一个 thread 最好只处理一个明确任务，比如做首页、修按钮、优化移动端要分开。这样 Codex 的上下文更清楚，你也更容易检查每个任务对应的 diff 和结果。任务变多后，可以用搜索找回历史 thread；遇到等待批准时先看清请求；完成或暂时不用的 thread 可以归档，让任务列表保持干净。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会帮你改成适合对外讲的版本。下一课会讲 Codex App 的安全与控制：权限、沙盒、模型、推理强度、引导和计划模式。</p>
+    </section>
+
+    <footer>
+      Primary source: `Codex橙皮书.pdf`, pages 31-41. Quick reference: <a href="../reference/0005-codex-app-task-space.html">Codex App 任务空间速查卡</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>
