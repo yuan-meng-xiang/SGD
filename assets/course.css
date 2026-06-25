@@ -269,6 +269,46 @@ th {
   margin: 8px 0;
 }
 
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.map-node {
+  border: 1px solid var(--line);
+  background: #fffdf9;
+  padding: 16px;
+}
+
+.map-node strong {
+  display: block;
+  color: var(--accent);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.edge-list {
+  counter-reset: edge;
+  list-style: none;
+  padding: 0;
+}
+
+.edge-list li {
+  border-left: 4px solid var(--accent-2);
+  background: #fffdf9;
+  margin: 10px 0;
+  padding: 10px 14px;
+}
+
+.stage-note {
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+}
+
 footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -284,6 +324,10 @@ footer {
   }
 
   .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .map-grid {
     grid-template-columns: 1fr;
   }
 }
