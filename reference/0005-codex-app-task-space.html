@@ -76,6 +76,18 @@
       </ul>
     </section>
 
+    <section>
+      <h2>多 thread 的风险</h2>
+      <p>多 thread 是为了减少上下文混乱，但不能替代任务分解。任务边界切不好时，多个 thread 仍然会互相干扰。</p>
+      <ul class="compact-list">
+        <li>两个 thread 改同一批文件，容易冲突或覆盖。</li>
+        <li>两个任务边界重叠，容易重复修改。</li>
+        <li>新 thread 不一定知道旧 thread 的决策，需要你明确补充上下文。</li>
+        <li>多个 diff 同时出现时，要逐个 review，不要混着接受。</li>
+      </ul>
+      <p class="formula">一个 thread = 一个明确目标 + 一个主要区域 + 一个可验收结果。</p>
+    </section>
+
     <footer>
       Sources: `Codex橙皮书.pdf` pages 31-41.
     </footer>
