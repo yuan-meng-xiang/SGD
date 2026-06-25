@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0001 - Codex 不是代码生成按钮</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0001</div>
+      <h1>Codex 不是代码生成按钮</h1>
+      <p class="lede">这一课只练一个能力：你能不能把 Codex 的定位讲清楚，而不是把它讲成“又一个会写代码的聊天框”。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=5">`Codex橙皮书.pdf` 第 5-15 页</a>。教材标注为非官方指南，v0.1.0，最后校验于 2026-06-22；涉及安装入口、额度、价格、模型名称时要再查官方当前资料。
+    </p>
+
+    <section>
+      <h2>先抓住角色变化</h2>
+      <p>讲 Codex 的第一句话，不要从“它能写什么代码”开始，而要从“它在软件工程里扮演什么角色”开始。</p>
+      <div class="callout">
+        <p class="formula">Codex 是可以进入项目现场、推进软件工程任务到可 review 状态的 AI coding agent。</p>
+      </div>
+      <p>这句话里有三个关键词：项目现场、工程任务、可 review。它们把 Codex 和普通聊天式写代码工具区分开。</p>
+    </section>
+
+    <section>
+      <h2>三个关键词</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>项目现场</h3>
+          <p>Codex 不是只看你复制的一段代码。它可以围绕当前项目读文件、理解上下文、搜索代码、运行命令。</p>
+        </div>
+        <div class="panel">
+          <h3>工程任务</h3>
+          <p>适合它的不是“随便做个大项目”，而是边界清楚的小任务：修 bug、加功能、补测试、写文档、整理 PR。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <h3>可 review</h3>
+        <p>Codex 的产物不应该只停留在回答里，而应该能被你看 diff、跑测试、检查风险，再决定是否接受。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>给别人讲时的对比</h2>
+      <ul class="compact-list">
+        <li>ChatGPT：更像顾问，帮你想清楚。</li>
+        <li>Cursor：更像 AI 编辑器，陪你改代码。</li>
+        <li>Codex：更像工程 Agent，帮你推进任务。</li>
+      </ul>
+      <p>这不是说谁替代谁，而是讲清楚使用场景：想问题、写局部、交付任务，是三个不同动作。</p>
+    </section>
+
+    <section>
+      <h2>什么时候适合用 Codex</h2>
+      <p>你可以用六个判断词：目标明确、范围可控、上下文清楚、结果能验证、失败能回滚、风险可接受。</p>
+      <p>反过来，生产数据库、真实用户数据、支付核心逻辑、安全权限核心模块、你自己也无法验收的任务，都不适合直接交给它独立处理。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习</h2>
+      <p>如果只用四个字概括 Codex 相比普通聊天工具的核心定位，下面哪一个最好？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="还不够。代码补全更像 Copilot 时代的定位。">代码补全</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。Codex 的重点是把任务推进到可 review。">工程交付</label>
+        <label><input type="radio" value="c" data-bad="太窄了。Codex 可以写文档，但不止是文档助手。">文档整理</label>
+        <label><input type="radio" value="d" data-bad="偏了。Codex 的核心场景是软件工程任务。">图片生成</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请合上本页，试着用自己的话回答：Codex 和 ChatGPT 的区别是什么？如果你卡住，就回到<a href="../reference/0001-codex-positioning.html">Codex 定位速查卡</a>，只看“一句话”和“三层讲法”。</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0001-codex-vs-chatgpt">
+        <h3>写给别人听的版本</h3>
+        <p>用 2-4 句话写下来。目标不是背教材，而是让一个没用过 Codex 的人听懂。</p>
+        <textarea aria-label="用自己的话解释 Codex 和 ChatGPT 的区别" placeholder="例如：ChatGPT 更像顾问，适合帮我想清楚问题；Codex 更像..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：ChatGPT 更像一个顾问，主要帮你分析问题、解释代码、生成思路；你需要把答案自己搬回项目里执行。Codex 更像一个能进入项目现场的工程 Agent，它可以读文件、改代码、跑命令、看 diff，把一个边界清楚的软件任务推进到可 review 的状态。</p>
+        </div>
+      </div>
+
+      <p class="next-note">有不清楚的地方，直接问我。下一课会讲 Codex 的四个入口：App、CLI、IDE Extension、Web/Cloud，以及新手为什么通常从 App 开始。</p>
+    </section>
+
+    <footer>
+      Primary source: `Codex橙皮书.pdf`, pages 5-15. Official product details: <a href="https://developers.openai.com/codex/">OpenAI Codex documentation</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>

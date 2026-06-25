@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0002 - Codex 的四个入口怎么选</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0002</div>
+      <h1>Codex 的四个入口怎么选</h1>
+      <p class="lede">这一课只练一个能力：你能不能给新手讲清楚 App、CLI、IDE Extension、Web/Cloud 分别适合什么场景。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=16">`Codex橙皮书.pdf` 第 16-18 页</a>。官方当前文档也把 Codex 分成 App、CLI、IDE Extension、Web 等入口；具体安装方式和套餐包含情况以官方页面为准。
+    </p>
+
+    <section>
+      <h2>入口不是能力等级</h2>
+      <p>给别人讲 Codex 入口时，最容易讲乱的一点是：把 App、CLI、IDE、Web 讲成“高级程度不同”。更好的讲法是，它们对应不同工作场景。</p>
+      <div class="callout">
+        <p class="formula">App 管任务，CLI 管终端，IDE 管编辑器上下文，Web/Cloud 管远程仓库任务。</p>
+      </div>
+      <p>这句话够短，适合作为你讲第二课时的开场。</p>
+    </section>
+
+    <section>
+      <h2>四个入口怎么讲</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>入口</th>
+              <th>一句话</th>
+              <th>适合谁</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Codex App</td>
+              <td>桌面任务指挥台</td>
+              <td>想要图形界面、刚开始练习、本地项目管理、多线程和 review 的人。</td>
+            </tr>
+            <tr>
+              <td>Codex CLI</td>
+              <td>终端里的工程搭档</td>
+              <td>熟悉终端、Git、构建、测试命令，想让 Codex 直接在项目目录里工作的开发者。</td>
+            </tr>
+            <tr>
+              <td>IDE Extension</td>
+              <td>编辑器里的上下文助手</td>
+              <td>已经在编辑器里写代码，想让 Codex 利用打开文件、选区、文件引用来协作的人。</td>
+            </tr>
+            <tr>
+              <td>Web/Cloud</td>
+              <td>云端任务执行入口</td>
+              <td>希望连接 GitHub 仓库、让 Codex 在云端后台跑任务、产出 PR 或远程处理问题的人。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>为什么新手先从 App 开始</h2>
+      <p>教材建议本地项目、网页练习和日常开发先从 Codex App 开始。原因不是 App “更高级”，而是它更容易让新手看到完整工作流：选择项目、开 thread、输入任务、看计划、看执行过程、看 diff、决定是否接受。</p>
+      <div class="route" aria-label="推荐学习路线">
+        <span class="step">App 建立直觉</span>
+        <span class="step">CLI 学命令流</span>
+        <span class="step">IDE 贴近日常编辑</span>
+        <span class="step">Web/Cloud 处理远程仓库</span>
+      </div>
+      <p>所以给别人讲时可以说：先别急着比较哪个入口最好，先看你要在哪个地方完成任务。</p>
+    </section>
+
+    <section>
+      <h2>选择入口的三个问题</h2>
+      <ul class="compact-list">
+        <li>代码在哪里：本地文件夹，还是 GitHub 仓库？</li>
+        <li>你在哪里工作最顺：桌面 App、终端、编辑器，还是浏览器？</li>
+        <li>任务怎么验收：看本地 diff、跑测试命令、编辑器联动，还是生成 PR？</li>
+      </ul>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习</h2>
+      <p>你要给一个完全新手演示“选择项目、开 thread、看 diff、review 修改”的完整流程，最适合先用哪个入口？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-correct="true" data-ok="对。App 最适合用来建立完整任务流程的直觉。">Codex App</label>
+        <label><input type="radio" value="b" data-bad="CLI 很适合终端用户，但新手第一次看完整流程时 App 更直观。">Codex CLI</label>
+        <label><input type="radio" value="c" data-bad="IDE 适合贴着编辑器工作，但本题强调完整任务管理和 review。">IDE 插件</label>
+        <label><input type="radio" value="d" data-bad="Web/Cloud 适合远程仓库和后台任务，本题是本地新手演示。">Web/Cloud</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 3-5 句话回答：如果一个人问“我该从 Codex 哪个入口开始”，你会怎么帮他判断？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0002-codex-entry-choice">
+        <h3>写给新手听的版本</h3>
+        <p>要包含两个点：为什么新手通常先从 App 开始，以及什么时候应该切到 CLI、IDE 或 Web/Cloud。</p>
+        <textarea aria-label="解释 Codex 四个入口怎么选" placeholder="例如：如果你是新手，建议先从 Codex App 开始，因为..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：如果是新手，我建议先从 Codex App 开始，因为它最容易看到完整流程：选项目、开 thread、交代任务、看计划、看 diff、做 review。等你熟悉终端和 Git 后，可以用 CLI 处理真实项目里的命令流；如果你主要在编辑器里改代码，就用 IDE Extension；如果任务在 GitHub 仓库里、希望 Codex 云端后台处理或产出 PR，就考虑 Web/Cloud。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会帮你改成更适合对外讲的版本。下一课会进入 Codex App 的第一轮上手：项目、thread、任务窗口、review pane。</p>
+    </section>
+
+    <footer>
+      Primary source: `Codex橙皮书.pdf`, pages 16-18. Official docs: <a href="https://developers.openai.com/codex/app">Codex app</a>, <a href="https://developers.openai.com/codex/cli">Codex CLI</a>, <a href="https://developers.openai.com/codex/ide">IDE extension</a>, <a href="https://developers.openai.com/codex/web">Codex web</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>

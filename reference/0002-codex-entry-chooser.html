@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 入口选择速查卡</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Reference 0002</div>
+      <h1>Codex 入口选择速查卡</h1>
+      <p class="lede">入口不是能力等级，而是工作场景。先问“我要在哪里把任务推进完”。</p>
+    </header>
+
+    <section>
+      <h2>一句话</h2>
+      <p class="formula">App 管任务，CLI 管终端，IDE 管编辑器上下文，Web/Cloud 管远程仓库任务。</p>
+    </section>
+
+    <section>
+      <h2>四个入口</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>入口</th>
+              <th>最好这样讲</th>
+              <th>适合场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Codex App</td>
+              <td>桌面任务指挥台</td>
+              <td>新手上手、本地项目、多线程、看 diff、管理任务</td>
+            </tr>
+            <tr>
+              <td>Codex CLI</td>
+              <td>终端里的工程搭档</td>
+              <td>熟悉终端、Git、脚本、构建测试、真实项目命令流</td>
+            </tr>
+            <tr>
+              <td>IDE Extension</td>
+              <td>编辑器里的上下文助手</td>
+              <td>正在 VS Code、Cursor、Windsurf、JetBrains 等编辑器里改具体文件</td>
+            </tr>
+            <tr>
+              <td>Web/Cloud</td>
+              <td>云端任务执行入口</td>
+              <td>连接 GitHub 仓库、后台并行任务、生成 PR 或远程处理仓库问题</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>新手路线</h2>
+      <div class="route" aria-label="新手学习路线">
+        <span class="step">1. App</span>
+        <span class="step">2. CLI</span>
+        <span class="step">3. IDE Extension</span>
+        <span class="step">4. Web/Cloud</span>
+      </div>
+      <p>先用 App 建立项目、thread、diff、review 的直觉；再用 CLI 学会真实项目命令流；之后根据个人工作方式补 IDE 或 Web/Cloud。</p>
+    </section>
+
+    <section>
+      <h2>三个判断问题</h2>
+      <ul class="compact-list">
+        <li>代码在哪里：本地文件夹，还是 GitHub 仓库？</li>
+        <li>你在哪里工作最顺：桌面 App、终端、编辑器，还是浏览器？</li>
+        <li>任务要怎么验收：看本地 diff、跑命令、编辑器联动，还是生成 PR？</li>
+      </ul>
+    </section>
+
+    <footer>
+      Sources: `Codex橙皮书.pdf` pages 16-18; official docs: <a href="https://developers.openai.com/codex/app">Codex app</a>, <a href="https://developers.openai.com/codex/cli">Codex CLI</a>, <a href="https://developers.openai.com/codex/ide">IDE extension</a>, <a href="https://developers.openai.com/codex/web">Codex web</a>.
+    </footer>
+  </main>
+</body>
+</html>
