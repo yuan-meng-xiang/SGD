@@ -12,7 +12,7 @@
       <div class="kicker">Knowledge Graph 0001</div>
       <h1>Codex 当前知识图谱快照</h1>
       <p class="lede">这是阶段地图，不是最终百科。它只记录当前已经学过、正在引入、以及后续要接上的 Codex 主干。</p>
-      <p class="stage-note">Snapshot date: 2026-06-25. Built from lessons 0001-0003 and learning records 0001-0002.</p>
+      <p class="stage-note">Snapshot date: 2026-06-29. Built from lessons 0001-0005 and learning records 0001-0004.</p>
     </header>
 
     <section>
@@ -31,17 +31,17 @@
         <div class="map-node">
           <strong>3. 工作流</strong>
           <p>选项目、开 thread、给小任务、看计划、看执行、查 review pane、验 diff。</p>
-          <p class="stage-note">Status: introduced. Evidence: Lesson 0003.</p>
+          <p class="stage-note">Status: learned. Evidence: LR-0003, Lesson 0003.</p>
         </div>
         <div class="map-node">
           <strong>4. 上下文</strong>
           <p>Codex 的质量取决于项目目录、任务边界、thread 范围、已有代码和可验证目标。</p>
-          <p class="stage-note">Status: planned. Needs future lesson.</p>
+          <p class="stage-note">Status: learned. Evidence: LR-0004, Lesson 0004.</p>
         </div>
         <div class="map-node">
           <strong>5. 执行与验证</strong>
           <p>Codex 的产物要通过 diff、测试、运行结果和人工判断来验收，而不是只看文字总结。</p>
-          <p class="stage-note">Status: introduced. Evidence: Lesson 0001 and 0003.</p>
+          <p class="stage-note">Status: learned. Evidence: LR-0003, Lesson 0001 and 0003.</p>
         </div>
         <div class="map-node">
           <strong>6. 扩展能力</strong>
@@ -50,8 +50,8 @@
         </div>
         <div class="map-node">
           <strong>7. 安全边界</strong>
-          <p>适合先交给 Codex 的任务应目标明确、范围可控、结果能验证、失败能回滚、风险可接受。</p>
-          <p class="stage-note">Status: introduced. Evidence: Lesson 0001 and 0003.</p>
+          <p>安全边界来自任务边界、沙盒、审批和 review 的组合；适合交给 Codex 的任务应目标明确、范围可控、结果能验证、失败能回滚、风险可接受。</p>
+          <p class="stage-note">Status: introduced. Evidence: Lesson 0001, 0003 and 0005.</p>
         </div>
       </div>
     </section>
@@ -62,6 +62,10 @@
         <li><strong>定位 -> 工作流：</strong>因为 Codex 是工程 agent，所以教学重点不是聊天技巧，而是任务闭环。</li>
         <li><strong>入口 -> 工作流：</strong>入口决定在哪里运行同一套闭环；新手通常先用 App 看完整过程。</li>
         <li><strong>上下文 -> 执行与验证：</strong>上下文决定 Codex 能做什么，验证决定结果能不能被接受。</li>
+        <li><strong>项目 -> thread：</strong>项目提供文件级上下文，thread 提供任务级上下文；一个明确任务最好对应一个 thread。</li>
+        <li><strong>thread -> 任务分解：</strong>多个 thread 不能替代清楚的任务分解，边界重叠时仍然可能互相干扰。</li>
+        <li><strong>安全边界 -> 审批：</strong>审批请求不是普通弹窗，而是越界或高风险动作交回给人判断。</li>
+        <li><strong>沙盒 -> review：</strong>沙盒限制影响范围，但不能证明结果正确；最终仍要看 diff、运行结果和风险。</li>
         <li><strong>安全边界 -> 工作流：</strong>第一次任务要小，是为了先建立验收习惯，再进入真实项目。</li>
         <li><strong>扩展能力 -> 上下文：</strong>Skills、plugins 和 MCP 的价值，是把更多项目规则、工具和外部能力接入任务现场。</li>
       </ul>
@@ -76,6 +80,8 @@
       Related references: <a href="../reference/0001-codex-positioning.html">Codex 定位速查卡</a>,
       <a href="../reference/0002-codex-entry-chooser.html">Codex 入口选择速查卡</a>,
       <a href="../reference/0003-codex-app-first-run.html">Codex App 第一次任务速查卡</a>,
+      <a href="../reference/0005-codex-app-task-space.html">Codex App 任务空间速查卡</a>,
+      <a href="../reference/0007-codex-safety-controls.html">Codex 安全与控制速查卡</a>,
       <a href="../reference/0004-knowledge-graph-learning-loop.html">知识图谱学习法速查卡</a>.
     </footer>
   </main>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0005 - 讲清 Codex 的安全与控制</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0005</div>
+      <h1>讲清 Codex 的安全与控制</h1>
+      <p class="lede">这一课只练一个能力：你能不能给新手讲清楚 Codex 的安全控制不是“信不信 AI”，而是任务边界、沙盒、审批和 review 共同组成的控制系统。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=42">`Codex橙皮书.pdf` 第 42 页起</a>。官方核对：<a href="https://developers.openai.com/codex/concepts/sandboxing">Codex Sandbox</a>、<a href="https://developers.openai.com/codex/agent-approvals-security">Agent approvals &amp; security</a>、<a href="https://developers.openai.com/codex/permissions">Permissions</a>。权限配置仍在演进，教学时只强调原则，不背按钮位置。
+    </p>
+
+    <section>
+      <h2>安全不是一个开关</h2>
+      <p>新手容易把安全理解成“这个工具安不安全”。更好的讲法是：Codex 的安全来自一组控制层，每一层解决的问题不同。</p>
+      <div class="callout">
+        <p class="formula">任务边界决定做什么，沙盒决定能碰哪里，审批决定何时停下，review 决定能否接受。</p>
+      </div>
+      <p>这句话能把第 1-4 课连起来：Codex 是工程 agent，但它的输出必须被边界、权限和验收约束。</p>
+    </section>
+
+    <section>
+      <h2>四层控制</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>控制层</th>
+              <th>解决什么问题</th>
+              <th>给新手的讲法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>任务边界</td>
+              <td>避免 Codex 做太大、太散、不可验收的事。</td>
+              <td>先把任务切小，才能安全交给 agent。</td>
+            </tr>
+            <tr>
+              <td>沙盒</td>
+              <td>限制 Codex 执行命令和读写文件的范围。</td>
+              <td>沙盒不是让结果一定正确，而是限制它能影响哪里。</td>
+            </tr>
+            <tr>
+              <td>审批</td>
+              <td>当动作超出当前边界或风险更高时暂停，让人判断。</td>
+              <td>看到审批请求时，不要机械点允许，先看它要做什么。</td>
+            </tr>
+            <tr>
+              <td>review</td>
+              <td>检查产物是否符合任务、是否越界、是否能运行。</td>
+              <td>审批是事前刹车，review 是事后验收。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>沙盒和审批不要混在一起</h2>
+      <p>沙盒回答的是“Codex 默认能做什么”；审批回答的是“什么时候需要停下来问你”。官方文档把常见组合讲得很清楚：低摩擦本地工作通常使用 workspace-write 加 on-request；危险的全访问则是没有沙盒、没有审批，不适合作为新手默认设置。</p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>低风险讲法</h3>
+          <p>让 Codex 在项目工作区里做事，超出边界时请求批准。</p>
+        </div>
+        <div class="panel">
+          <h3>高风险讲法</h3>
+          <p>让 Codex 不受沙盒限制、也不再停下询问。除非你非常清楚风险，否则不要这样教新手。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>权限请求要看三件事</h2>
+      <p>当 Codex 停下来请求权限时，先不要急着点允许。你可以教新手做三步检查：</p>
+      <div class="route" aria-label="审批请求检查流程">
+        <span class="step">看动作</span>
+        <span class="step">看范围</span>
+        <span class="step">看必要性</span>
+      </div>
+      <ul class="compact-list">
+        <li><strong>看动作</strong>：它是读文件、写文件、联网、安装依赖，还是删除东西？</li>
+        <li><strong>看范围</strong>：它只影响当前项目，还是要碰系统目录、密钥、外部服务？</li>
+        <li><strong>看必要性</strong>：这个动作是否真的服务当前小任务？有没有更小、更安全的做法？</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>模型、推理强度和计划模式</h2>
+      <p>这些设置不应该被讲成“越强越好”。更稳的教学方式是把它们当作任务控制：</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>设置</th>
+              <th>适合怎么讲</th>
+              <th>常见误解</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>模型</td>
+              <td>不同模型适合不同成本、速度和复杂度。</td>
+              <td>以为永远选最大的模型就最好。</td>
+            </tr>
+            <tr>
+              <td>推理强度</td>
+              <td>复杂任务需要更多思考，简单任务不必加重。</td>
+              <td>以为推理强度能替代清楚任务。</td>
+            </tr>
+            <tr>
+              <td>计划模式</td>
+              <td>适合先讨论方案、边界和风险，再决定是否执行。</td>
+              <td>以为有计划就一定安全。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>设置能帮助控制任务，但不能替代人的判断。真正的安全来自：任务切小、权限克制、看懂请求、认真 review。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习</h2>
+      <p>Codex 请求更高权限时，新手最应该先做什么？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="不稳。允许之前先判断动作、范围和必要性。">立刻允许</label>
+        <label><input type="radio" value="b" data-bad="不够。只看任务标题无法判断这次权限请求是否越界。">只看标题</label>
+        <label><input type="radio" value="c" data-correct="true" data-ok="对。先看动作、范围和必要性，再决定是否允许。">检查请求</label>
+        <label><input type="radio" value="d" data-bad="太绝对。有些任务确实需要权限，关键是判断是否必要。">永远拒绝</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 4-6 句话回答：如果你给新手解释 Codex 的安全控制，你会怎么区分任务边界、沙盒、审批和 review？为什么不能把“全访问 + 不审批”当成默认用法？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0005-codex-safety-controls">
+        <h3>写给新手听的版本</h3>
+        <p>要包含三个点：安全是多层控制；审批请求要看动作、范围和必要性；设置不能替代 review。</p>
+        <textarea aria-label="解释 Codex 的安全与控制" placeholder="例如：我会先告诉新手，安全不是一个开关，而是..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：我会先告诉新手，Codex 的安全不是一个开关，而是几层控制一起工作。任务边界决定这次只做什么，沙盒限制 Codex 默认能读写和执行的范围，审批让高风险或越界动作先停下来给人判断，review 则是在任务完成后检查 diff、运行结果和风险。遇到权限请求时，不要机械点击允许，而要看它要做什么、影响哪里、是否真的服务当前任务。“全访问 + 不审批”会同时放宽边界和取消刹车，不适合作为新手默认用法；更好的习惯是小任务、低权限、看请求、再验收。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会帮你压缩成适合课堂讲解的一分钟版本。你也可以选择开启苏格拉底追问，我会用 2-3 个问题帮你检查边界、迁移和图谱连接。</p>
+    </section>
+
+    <footer>
+      Primary source: `Codex橙皮书.pdf`, starting around page 42. Official references: <a href="https://developers.openai.com/codex/concepts/sandboxing">Sandbox</a>, <a href="https://developers.openai.com/codex/agent-approvals-security">Agent approvals &amp; security</a>, <a href="https://developers.openai.com/codex/permissions">Permissions</a>. Quick reference: <a href="../reference/0007-codex-safety-controls.html">Codex 安全与控制速查卡</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>
