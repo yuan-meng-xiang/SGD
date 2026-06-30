@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 改动验收清单</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Reference 0008</div>
+      <h1>Codex 改动验收清单</h1>
+      <p class="lede">Codex 完成任务后，先验收，再接受。真正要看的不是它说了什么，而是项目里实际发生了什么。</p>
+    </header>
+
+    <section>
+      <h2>一句话</h2>
+      <p class="formula">总结是说法，diff 是事实，测试是证据，接受是判断。</p>
+    </section>
+
+    <section>
+      <h2>四步流程</h2>
+      <div class="route" aria-label="验收流程">
+        <span class="step">看总结</span>
+        <span class="step">看 diff</span>
+        <span class="step">做验证</span>
+        <span class="step">再接受</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>diff 必看项</h2>
+      <ul class="compact-list">
+        <li>改了哪些文件，是否都服务当前任务。</li>
+        <li>红色删除部分，是否误删测试、错误处理、权限判断或边界条件。</li>
+        <li>是否改了全局样式、配置、依赖、数据库、认证、网络或文件系统相关代码。</li>
+        <li>是否存在“顺手重构”、大范围格式化、目录结构调整。</li>
+        <li>是否能只接受部分文件或 hunk，把无关改动回退。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>验证证据</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>验证类型</th>
+              <th>适合什么时候</th>
+              <th>最低要求</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>测试</td>
+              <td>项目有单元测试、集成测试或端到端测试。</td>
+              <td>运行相关测试，失败时说明是否与本次改动有关。</td>
+            </tr>
+            <tr>
+              <td>构建</td>
+              <td>前端、后端或库项目需要发布或部署。</td>
+              <td>运行 build/typecheck/lint 中和项目相关的命令。</td>
+            </tr>
+            <tr>
+              <td>手动验证</td>
+              <td>UI、交互、登录、表单、支付、上传等流程。</td>
+              <td>列出操作步骤、预期结果和实际结果。</td>
+            </tr>
+            <tr>
+              <td>回归检查</td>
+              <td>改动碰到共享组件、全局样式、配置、依赖。</td>
+              <td>检查可能受影响的旧页面、旧流程或旧 API。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>四种结论</h2>
+      <ul class="compact-list">
+        <li><strong>接受</strong>：改动范围清楚，验证通过，风险可接受。</li>
+        <li><strong>部分接受</strong>：只 stage 相关文件或 hunk，回退无关改动。</li>
+        <li><strong>继续修正</strong>：目标对，但有测试失败、边界遗漏或小风险。</li>
+        <li><strong>回退</strong>：改动越界、删除重要逻辑、风险不可解释。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>可复制提示词</h2>
+      <div class="callout">
+        <p>请对本次修改做验收，不要继续新增功能。请列出修改文件、任务相关改动、可能越界的改动、删除和依赖变化、已运行与未运行的测试，并建议接受、部分接受、继续修正还是回退。</p>
+      </div>
+    </section>
+
+    <footer>
+      Lesson: <a href="../lessons/0006-review-codex-changes-before-accepting.html">0006 - 验收 Codex 的改动</a>. Sources: `Codex橙皮书.pdf` pages 27, 83, 163, 165; <a href="https://developers.openai.com/codex/app/review">Codex App Review</a>; <a href="https://developers.openai.com/codex/app/features">Codex App Features</a>; <a href="https://developers.openai.com/codex/integrations/github">Codex code review in GitHub</a>.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0006 - 验收 Codex 的改动</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0006</div>
+      <h1>验收 Codex 的改动</h1>
+      <p class="lede">这一课只练一个能力：Codex 说完成之后，你能不能通过总结、diff、测试和手动验证，判断这次改动是否真的可以接受。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=27">`Codex橙皮书.pdf` 第 27 页</a>、<a href="../Codex橙皮书.pdf#page=83">第 83 页</a>、<a href="../Codex橙皮书.pdf#page=163">第 163 页</a>、<a href="../Codex橙皮书.pdf#page=165">第 165 页</a>。官方核对：<a href="https://developers.openai.com/codex/app/review">Codex App Review</a>、<a href="https://developers.openai.com/codex/app/features">Codex App Features</a>、<a href="https://developers.openai.com/codex/integrations/github">Codex code review in GitHub</a>。本课讲的是验收原则，不要求记住某个界面的按钮位置。
+    </p>
+
+    <section>
+      <h2>完成不等于接受</h2>
+      <p>第五课讲的是安全控制：任务边界、沙盒、审批和 review。第六课往后走一步：当 Codex 已经改完代码，真正的问题不是“它有没有说完成”，而是“你能不能验收结果”。</p>
+      <div class="callout">
+        <p class="formula">总结是说法，diff 是事实，测试是证据，接受是判断。</p>
+      </div>
+      <p>这句话适合讲给新手：Codex 的总结只能帮你快速定位，它不能替代检查。验收时要看真实改动、运行结果和风险，而不是只看一句“已完成”。</p>
+    </section>
+
+    <section>
+      <h2>四步验收法</h2>
+      <div class="route" aria-label="验收流程">
+        <span class="step">看总结</span>
+        <span class="step">看 diff</span>
+        <span class="step">做验证</span>
+        <span class="step">再接受</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>步骤</th>
+              <th>要问的问题</th>
+              <th>警惕信号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>看总结</td>
+              <td>Codex 声称做了什么？有没有说清楚改了哪些文件？</td>
+              <td>只说“已优化”“已修复”，没有具体范围。</td>
+            </tr>
+            <tr>
+              <td>看 diff</td>
+              <td>真实改动是否都服务当前任务？新增和删除是否合理？</td>
+              <td>无关文件、全局样式、配置、依赖、删除测试。</td>
+            </tr>
+            <tr>
+              <td>做验证</td>
+              <td>相关测试、构建、lint、手动流程是否跑过？结果如何？</td>
+              <td>没有验证，或者失败原因被一句话带过。</td>
+            </tr>
+            <tr>
+              <td>再接受</td>
+              <td>要全部接受、部分接受、要求修正，还是回退？</td>
+              <td>因为“看起来能跑”就直接合并。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>diff 里重点看什么</h2>
+      <p>初学者看 diff 容易只盯绿色新增代码。更好的顺序是先看范围，再看删除，再看风险面。</p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>先看范围</h3>
+          <p>文件数量是否合理？有没有碰到导航、全局样式、配置、数据库、认证、依赖这类高影响区域？</p>
+        </div>
+        <div class="panel">
+          <h3>再看删除</h3>
+          <p>红色删除尤其重要。误删测试、错误处理、权限判断、边界条件，往往比新增代码更危险。</p>
+        </div>
+      </div>
+      <p>官方 Codex App 文档也把 review pane 定位为检查 diff、评论和 Git changes 的地方，并支持按文件或 hunk stage、unstage、revert。教学时可以把它讲成“接受前的检查台”。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习 1</h2>
+      <p>Codex 说“任务已完成”后，最应该先检查什么？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="不稳。总结只是说法，不能替代真实改动。">只看总结</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。diff 才能说明真实发生了什么。">检查差异</label>
+        <label><input type="radio" value="c" data-bad="太快。合并之前要看 diff 和验证结果。">立刻合并</label>
+        <label><input type="radio" value="d" data-bad="太绝对。有问题时可以要求修正或部分接受。">全部拒绝</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>场景练习</h2>
+      <p>任务：给登录页增加“忘记密码”链接。Codex 完成后，diff 显示：</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>改动</th>
+              <th>你的判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>修改 `LoginPage.tsx`，增加“忘记密码”链接。</td>
+              <td>符合任务目标。</td>
+            </tr>
+            <tr>
+              <td>修改 `Navbar.tsx`，调整导航结构。</td>
+              <td>需要问为什么，可能越界。</td>
+            </tr>
+            <tr>
+              <td>调整全局字体和 body 样式。</td>
+              <td>高风险，通常不属于当前任务。</td>
+            </tr>
+            <tr>
+              <td>删除一个未使用的测试文件。</td>
+              <td>非常警惕，删除测试必须有明确理由。</td>
+            </tr>
+            <tr>
+              <td>没有运行测试，也没有手动打开登录页。</td>
+              <td>验收证据不足。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习 2</h2>
+      <p>上面的场景里，哪类改动最能说明 Codex 可能越界？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="这正是任务目标，单独看不算越界。">登录链接</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。全局字体会影响大量页面，和小任务不匹配。">全局字体</label>
+        <label><input type="radio" value="c" data-bad="验证缺失是问题，但它不是 diff 越界本身。">没有测试</label>
+        <label><input type="radio" value="d" data-bad="总结太泛是信号，但真实越界要回到 diff。">总结模糊</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>给 Codex 的验收提示词</h2>
+      <p>当你不确定怎么验收，可以把验收任务也交给 Codex，但要限制它只检查、解释和建议，不要继续新增功能。</p>
+      <div class="callout">
+        <p>请对本次修改做验收，不要继续新增功能。请列出：1. 修改了哪些文件；2. 哪些改动服务当前任务；3. 是否有无关改动、删除、配置或依赖变化；4. 已运行和未运行的测试；5. 建议接受、部分接受、继续修正还是回退，并说明理由。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 4-6 句话回答：Codex 完成任务后，为什么不能只看总结？你会按什么顺序验收它的改动？遇到无关重构、全局样式、依赖升级或删除测试时，你会怎么处理？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0006-review-codex-changes">
+        <h3>写给新手听的版本</h3>
+        <p>要包含三个点：总结不是事实；diff 和测试是验收核心；发现越界时要修正、部分接受或回退。</p>
+        <textarea aria-label="解释如何验收 Codex 的改动" placeholder="例如：Codex 说完成以后，我不会马上接受，因为..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：Codex 完成任务后，不应该只看它的文字总结，因为总结只是它对自己工作的描述，diff 才是真实发生的改动。我会先看总结，再看 diff，确认改了哪些文件、有没有无关重构、误删代码、修改配置或新增依赖。然后运行相关测试，前端功能还要手动打开页面验证。发现越界改动时，不要直接接受，可以要求 Codex 回退无关部分、拆分改动，或者只 stage 符合任务的 hunk。好的验收习惯是：先看总结，再看 diff，再测试或手动验证，最后决定是否接受。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会先帮你改成更适合课堂表达的版本。之后你可以选择开启苏格拉底追问，我会用 2-3 个问题测试你是否真的能迁移到新场景。</p>
+    </section>
+
+    <footer>
+      上一课：<a href="./0005-explain-codex-safety-controls.html">讲清 Codex 的安全与控制</a>。速查卡：<a href="../reference/0008-codex-change-review-checklist.html">Codex 改动验收清单</a>。Primary sources: `Codex橙皮书.pdf` pages 27, 83, 163, 165; <a href="https://developers.openai.com/codex/app/review">Codex App Review</a>; <a href="https://developers.openai.com/codex/app/features">Codex App Features</a>; <a href="https://developers.openai.com/codex/integrations/github">Codex code review in GitHub</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>

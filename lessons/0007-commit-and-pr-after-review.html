@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>0007 - 验收之后提交与 PR</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Lesson 0007</div>
+      <h1>验收之后提交与 PR</h1>
+      <p class="lede">这一课只练一个能力：当 Codex 的改动通过验收后，你能不能把它变成一次清楚、可回退、可 review 的交付。</p>
+    </header>
+
+    <p class="source-note">
+      主教材：<a href="../Codex橙皮书.pdf#page=132">`Codex橙皮书.pdf` 第 132-134 页</a>、<a href="../Codex橙皮书.pdf#page=169">第 169-176 页</a>。补充来源：<a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F">Pro Git: What is Git?</a>、<a href="https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging">Pro Git: Interactive Staging</a>、<a href="https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">GitHub: About pull requests</a>、<a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>。
+    </p>
+
+    <section>
+      <h2>验收后还没结束</h2>
+      <p>第六课解决的是“能不能接受这次改动”。第七课解决的是“接受之后怎么保存和交付”。如果只让代码留在工作区里，过几天你很难说清楚这次到底改了什么、为什么改、怎么验证过。</p>
+      <div class="callout">
+        <p class="formula">stage 是选择，commit 是存档，PR 是申请，merge 是合入。</p>
+      </div>
+      <p>这句话能把 Git 和 Codex 的关系讲清楚：Codex 负责帮你完成任务，Git 负责记录变化，GitHub/PR 负责把变化交给人 review。</p>
+    </section>
+
+    <section>
+      <h2>四个动作不要混</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>动作</th>
+              <th>它回答什么问题</th>
+              <th>给新手的讲法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>stage</td>
+              <td>哪些改动准备放进这次提交？</td>
+              <td>只把通过验收、属于同一件事的改动放进去。</td>
+            </tr>
+            <tr>
+              <td>commit</td>
+              <td>这次保存的版本是什么？</td>
+              <td>给项目拍一张可回退的快照，并写清楚改了什么。</td>
+            </tr>
+            <tr>
+              <td>push</td>
+              <td>本地提交是否同步到远程？</td>
+              <td>把本地记录上传到 GitHub 等远程仓库。</td>
+            </tr>
+            <tr>
+              <td>PR</td>
+              <td>是否准备把改动合进主线？</td>
+              <td>提交一份“请检查后合并”的修改申请。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>先 stage，再 commit</h2>
+      <p>不要把“所有当前改动”自动等同于“这次应该提交的改动”。第六课里你已经学会了看 diff；现在要把这个判断落实到 stage。</p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>适合放进同一个 commit</h3>
+          <p>同一个目标、同一组文件、同一套验证结果。比如“给登录页增加忘记密码链接”。</p>
+        </div>
+        <div class="panel">
+          <h3>应该拆开的改动</h3>
+          <p>功能修改、全局样式、依赖升级、无关重构、文档补充混在一起时，通常要拆开。</p>
+        </div>
+      </div>
+      <p>Pro Git 把 staging area 描述成下一次 commit 的准备区。教学时可以更口语化：stage 就是在说“这次我要保存哪些改动”。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习 1</h2>
+      <p>在 Codex 改完并通过验收后，stage 最接近哪个动作？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-correct="true" data-ok="对。stage 是选择这次要进入 commit 的改动。">选择改动</label>
+        <label><input type="radio" value="b" data-bad="不对。说明结果更接近 commit message 或 PR 描述。">说明结果</label>
+        <label><input type="radio" value="c" data-bad="不对。合并主线是 merge，不是 stage。">合并主线</label>
+        <label><input type="radio" value="d" data-bad="不对。运行测试是验证，不是 stage。">运行测试</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>commit message 要说清楚范围</h2>
+      <p>好的 commit message 不要夸大，也不要空泛。它应该让未来的你一眼看懂：这次主要改了什么。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>类型</th>
+              <th>适合场景</th>
+              <th>例子</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>feat</td>
+              <td>新增用户可见能力。</td>
+              <td>`feat: add reset link`</td>
+            </tr>
+            <tr>
+              <td>fix</td>
+              <td>修复错误行为。</td>
+              <td>`fix: restore login redirect`</td>
+            </tr>
+            <tr>
+              <td>docs</td>
+              <td>只改文档。</td>
+              <td>`docs: update setup guide`</td>
+            </tr>
+            <tr>
+              <td>refactor</td>
+              <td>不改变外部行为的结构调整。</td>
+              <td>`refactor: simplify form state`</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果使用 Conventional Commits，常见格式是 `type: description`。但格式不是重点，重点是范围真实、描述具体、不要把“修一个链接”写成“重构登录系统”。</p>
+    </section>
+
+    <section class="quiz" data-quiz>
+      <h2>检索练习 2</h2>
+      <p>任务是“给登录页新增忘记密码链接”。哪个 commit message 更合适？</p>
+      <div class="quiz-options">
+        <label><input type="radio" value="a" data-bad="太泛。update 不说明本次到底改了什么。">chore: update code</label>
+        <label><input type="radio" value="b" data-correct="true" data-ok="对。它说明了新增能力和大致范围。">feat: add reset link</label>
+        <label><input type="radio" value="c" data-bad="不稳。refactor 暗示结构调整，不符合新增链接。">refactor: update login</label>
+        <label><input type="radio" value="d" data-bad="不对。只改文档才适合 docs。">docs: update login</label>
+      </div>
+      <button type="button">检查答案</button>
+      <p class="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>PR 不是走形式</h2>
+      <p>GitHub 文档把 pull request 解释为合并代码改动的提案，可以在合并前讨论和 review。给新手讲时，可以说：PR 是把“代码改动 + 验证证据 + 风险说明”打包交给 reviewer。</p>
+      <div class="route" aria-label="PR 描述结构">
+        <span class="step">做了什么</span>
+        <span class="step">为什么做</span>
+        <span class="step">怎么验证</span>
+        <span class="step">风险在哪</span>
+      </div>
+      <p>如果没有团队 reviewer，也可以把 PR 当成给未来自己的交付记录。尤其是 Codex 参与的改动，PR 描述要写清楚哪些是自动生成、哪些经过人工验收。</p>
+    </section>
+
+    <section>
+      <h2>给 Codex 的交付提示词</h2>
+      <div class="callout">
+        <p>请进入提交与 PR 准备阶段，不要继续新增功能。请基于当前 diff 和测试结果输出：1. 建议 stage 哪些文件；2. 一个不夸大范围的 commit message；3. PR 描述，包括本次修改、修改原因、测试结果、风险说明、reviewer 需要重点看的地方；4. 是否还有不应该提交的改动。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>今天要能说出口</h2>
+      <p>请用 4-6 句话回答：为什么 Codex 改完并通过验收后，还需要 stage、commit 和 PR？stage、commit、PR、merge 分别解决什么问题？为什么不能把所有改动直接一键提交或自动合并？</p>
+
+      <div class="practice" data-practice data-storage-key="lesson-0007-commit-and-pr">
+        <h3>写给新手听的版本</h3>
+        <p>要包含三个点：stage 是选择；commit 是可回退记录；PR 是合并前的审查申请。</p>
+        <textarea aria-label="解释 Codex 验收后的提交与 PR" placeholder="例如：Codex 的改动通过验收后，我不会马上把所有文件提交，因为..."></textarea>
+        <div class="practice-actions">
+          <button type="button" data-save>保存我的回答</button>
+          <button type="button" class="secondary" data-reveal>查看参考答案</button>
+        </div>
+        <p class="practice-feedback" aria-live="polite"></p>
+        <div class="model-answer">
+          <p>参考答案：Codex 的改动通过验收后，还需要用 Git 把它变成清楚、可回退、可 review 的交付。stage 是选择哪些改动进入这次提交，避免把无关文件也保存进去；commit 是给这次通过验收的改动做一次版本存档，并用 message 说明范围；PR 是把改动、原因、测试和风险交给自己或团队再检查；merge 才是把它合进主线。不能把所有改动一键提交或自动合并，因为 Codex 可能留下无关重构、临时文件、配置变化或未验证风险。好的流程是：验收通过，只 stage 相关改动，写清楚 commit，再用 PR 做最后一层 review。</p>
+        </div>
+      </div>
+
+      <p class="next-note">把你的回答发给我，我会帮你压缩成课堂版。你也可以继续选择苏格拉底追问，我会用 2-3 个问题检查你能否把这套流程迁移到个人项目和团队 PR 场景。</p>
+    </section>
+
+    <footer>
+      上一课：<a href="./0006-review-codex-changes-before-accepting.html">验收 Codex 的改动</a>。速查卡：<a href="../reference/0009-codex-delivery-checklist.html">Codex 提交与 PR 清单</a>。Sources: `Codex橙皮书.pdf` pages 132-134 and 169-176; <a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F">Pro Git</a>; <a href="https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">GitHub Docs</a>; <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>.
+    </footer>
+  </main>
+  <script src="../assets/quiz.js"></script>
+</body>
+</html>

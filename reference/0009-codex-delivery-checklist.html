@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 提交与 PR 清单</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="kicker">Reference 0009</div>
+      <h1>Codex 提交与 PR 清单</h1>
+      <p class="lede">验收通过不是终点。把改动交付出去时，要让未来的自己和 reviewer 看得懂、查得到、回得去。</p>
+    </header>
+
+    <section>
+      <h2>一句话</h2>
+      <p class="formula">stage 是选择，commit 是存档，PR 是申请，merge 是合入。</p>
+    </section>
+
+    <section>
+      <h2>提交前检查</h2>
+      <ul class="compact-list">
+        <li>先 `git status` 看有哪些文件变化。</li>
+        <li>再看 diff，确认只提交通过验收的相关改动。</li>
+        <li>不要把临时文件、密钥、`.env`、无关重构、全局样式、依赖升级混进同一个提交。</li>
+        <li>如果一个 diff 包含多件事，优先拆成多个 commit 或先回退无关部分。</li>
+        <li>commit message 要描述真实范围，不要写成泛泛的 `update`。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>常见 commit 类型</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>类型</th>
+              <th>意思</th>
+              <th>例子</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>feat</td>
+              <td>新增用户可见能力。</td>
+              <td>`feat: add reset link`</td>
+            </tr>
+            <tr>
+              <td>fix</td>
+              <td>修复错误行为。</td>
+              <td>`fix: restore redirect`</td>
+            </tr>
+            <tr>
+              <td>docs</td>
+              <td>只改文档。</td>
+              <td>`docs: update setup`</td>
+            </tr>
+            <tr>
+              <td>refactor</td>
+              <td>不改变行为的结构调整。</td>
+              <td>`refactor: simplify state`</td>
+            </tr>
+            <tr>
+              <td>test</td>
+              <td>新增或修正测试。</td>
+              <td>`test: cover login flow`</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>PR 描述五件事</h2>
+      <ul class="compact-list">
+        <li><strong>做了什么</strong>：用 2-4 条列出主要改动。</li>
+        <li><strong>为什么做</strong>：关联需求、bug、issue 或课程目标。</li>
+        <li><strong>怎么验证</strong>：列出测试、构建、lint、手动验证结果。</li>
+        <li><strong>有什么风险</strong>：说明影响范围、不确定点和需要人工确认的地方。</li>
+        <li><strong>重点看哪里</strong>：引导 reviewer 看关键文件、关键流程或高风险 hunk。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>可复制提示词</h2>
+      <div class="callout">
+        <p>请进入提交与 PR 准备阶段，不要继续新增功能。请基于当前 diff 和测试结果输出：建议 stage 哪些文件、一个不夸大范围的 commit message、PR 描述、风险说明、reviewer 需要重点看的地方，以及是否还有不应该提交的改动。</p>
+      </div>
+    </section>
+
+    <footer>
+      Lesson: <a href="../lessons/0007-commit-and-pr-after-review.html">0007 - 验收之后提交与 PR</a>. Sources: `Codex橙皮书.pdf` pages 132-134 and 169-176; <a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F">Pro Git</a>; <a href="https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">GitHub Docs</a>; <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>.
+    </footer>
+  </main>
+</body>
+</html>

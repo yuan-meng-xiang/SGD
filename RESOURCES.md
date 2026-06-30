@@ -10,6 +10,12 @@
   Official source for CLI installation, command behavior, releases, and open issues. Use when teaching terminal workflow or troubleshooting.
 - [OpenAI Codex changelog](https://developers.openai.com/codex/changelog/)
   Official source for recent product changes. Use before teaching version-sensitive features.
+- [Pro Git book](https://git-scm.com/book/en/v2)
+  Official Git book. Use for Git concepts such as repository, working tree, staging area, commit, branch, diff, and recovery.
+- [GitHub Pull Requests documentation](https://docs.github.com/pull-requests)
+  Official GitHub docs for PR creation, review, discussion, and merge workflows. Use when teaching Codex Web/Cloud or team review flow.
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+  Lightweight commit message convention. Use for beginner-friendly commit message patterns, while reminding learners that clear scope matters more than memorizing labels.
 
 ## Wisdom (Communities)
 
